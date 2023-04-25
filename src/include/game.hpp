@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "world.hpp"
 
 /**
  * Defines the game engine, the setup previous to the execution of the game, and the game loop
@@ -8,7 +9,7 @@
 class Game {
 public:
     /**
-     * Constructor. mWindow and mPlayer are passed as initialization list.
+     * Constructor. mWindow and mWorld are passed as initialization list.
      */
     Game();
 
@@ -36,7 +37,7 @@ private:
      * updates the state of the game acording to the member variables mIsMoving...
      * @param deltaTime The constant timestep at which the game runs (1 / FPS)
      */
-    void update(sf::Time deltaTime);
+    void update(sf::Time elapsedTime);
 
     /**
      * Clears the previous frame and draws and display the updated scene
@@ -45,9 +46,8 @@ private:
 
 private:
     sf::RenderWindow mWindow;
-    sf::Texture mTexture;
-    sf::Sprite mPlayer;
+    World mWorld;
     bool mIsMovingUp = false, mIsMovingDown = false, mIsMovingRight = false, mIsMovingLeft = false;
     const float PlayerSpeed = 150.f;  // pixels / second
-    const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+    static const sf::Time TimePerFrame;
 };

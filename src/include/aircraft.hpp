@@ -1,7 +1,7 @@
 #pragma once
 
 #include "entity.hpp"
-#include "texture_identifiers.hpp"
+#include "resource_identifiers.hpp"
 
 class Aircraft : public Entity {
 public:

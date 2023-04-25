@@ -1,22 +1,18 @@
 #include "include/game.hpp"
 
+const sf::Time Game::TimePerFrame = sf::seconds(1.f / 60.f);
+
 Game::Game()
-        : mWindow(sf::VideoMode(640, 480), "SFML Application"), mTexture(),
-          mPlayer() {  // initializer list, parentheses means the value you are initializing to
-    if (!mTexture.loadFromFile("../Media/Textures/Eagle.png"))  // The path is wrt the executable file
-    {
-        // Handle loading error
-    }
-    mPlayer.setTexture(mTexture);
-    mPlayer.setPosition(100.f, 100.f);
+        : mWindow(sf::VideoMode(640, 480), "World"),
+          mWorld(mWindow) {  // initializer list, parentheses means the value you are initializing to
 }
 
 void Game::run() {
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while (mWindow.isOpen()) {
-        processEvents();
-        timeSinceLastUpdate += clock.restart();
+        sf::Time elapsedTime = clock.restart();
+        timeSinceLastUpdate += elapsedTime;
         while (timeSinceLastUpdate > TimePerFrame) {
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();
@@ -44,32 +40,16 @@ void Game::processEvents() {
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
-    if (key == sf::Keyboard::W)
-        mIsMovingUp = isPressed;
-    else if (key == sf::Keyboard::S)
-        mIsMovingDown = isPressed;
-    else if (key == sf::Keyboard::A)
-        mIsMovingLeft = isPressed;
-    else if (key == sf::Keyboard::D)
-        mIsMovingRight = isPressed;
 }
 
-void Game::update(sf::Time deltaTime) {
-    sf::Vector2f movement(0.f, 0.f);
-    if (mIsMovingUp)
-        movement.y -= PlayerSpeed;
-    if (mIsMovingDown)
-        movement.y += PlayerSpeed;
-    if (mIsMovingLeft)
-        movement.x -= PlayerSpeed;
-    if (mIsMovingRight)
-        movement.x += PlayerSpeed;
-
-    mPlayer.move(movement * deltaTime.asSeconds());
+void Game::update(sf::Time elapsedTime) {
+    mWorld.update(elapsedTime);
 }
 
 void Game::render() {
     mWindow.clear();
-    mWindow.draw(mPlayer);
+    mWorld.draw();
+
+    mWindow.setView(mWindow.getDefaultView());
     mWindow.display();
 }

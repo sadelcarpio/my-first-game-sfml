@@ -47,6 +47,9 @@ public:
     // const at the end means it can't modify member variables
 
 private:
+    void insertResource(Identifier id, std::unique_ptr<Resource> resource);
+
+private:
     std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;  // unique_ptr does not need a destructor (smart pointer)
 };
 

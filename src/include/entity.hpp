@@ -11,9 +11,7 @@ public:
     sf::Vector2f getVelocity() const;
 
 private:
-    void updateCurrent(sf::Time dt) override {
-        move(mVelocity * dt.asSeconds());
-    }
+    void updateCurrent(sf::Time dt) override;
 
 private:
     sf::Vector2f mVelocity;

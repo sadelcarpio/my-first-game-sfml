@@ -1,5 +1,9 @@
 #pragma once
 
+namespace sf {
+    class Texture;
+}
+
 /**
  * Enum for dealing with Texture Resources
  */

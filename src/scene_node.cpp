@@ -65,4 +65,6 @@ sf::Transform SceneNode::getWorldTransform() const {
     return transform;
 }
 
-
+sf::Vector2f SceneNode::getWorldPosition() const {
+    return getWorldTransform() * sf::Vector2f();
+}
