@@ -23,7 +23,7 @@ void Game::run() {
 }
 
 void Game::processEvents() {
-    sf::Event event;
+    sf::Event event{};
     while (mWindow.pollEvent(event)) {  // iteration of the Game loop (frame or tick)
         switch (event.type) {
             case sf::Event::KeyPressed:

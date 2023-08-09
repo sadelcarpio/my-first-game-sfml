@@ -17,8 +17,9 @@ Textures::ID toTextureID(Aircraft::Type type) {
     return Textures::Eagle;
 }
 
-Aircraft::Aircraft(Aircraft::Type type, const TextureHolder &textures) : mType(type),
-                                                                         mSprite(textures.get(toTextureID(type))) {
+
+Aircraft::Aircraft(Aircraft::Type type, const TextureHolder &texture) :
+        mSprite(texture.get(toTextureID(type))) {
     sf::FloatRect bounds = mSprite.getLocalBounds();
     mSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
 }

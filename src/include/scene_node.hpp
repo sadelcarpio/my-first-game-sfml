@@ -32,6 +32,10 @@ public:
      */
     Ptr detachChild(const SceneNode &node);
 
+    /**
+     * Updates the complete tree of the SceneNode by calling both updateCurrent and updateChildren
+     * @param dt constant time per frame
+     */
     void update(sf::Time dt);
 
     sf::Transform getWorldTransform() const;
@@ -62,8 +66,16 @@ private:
      */
     void drawChildren(sf::RenderTarget &target, sf::RenderStates states) const;
 
+    /**
+     * Update attributes of current SceneNode
+     * @param dt constant time per frame
+     */
     virtual void updateCurrent(sf::Time dt);
 
+    /**
+     * Update attributes of the children of SceneNode
+     * @param dt constant time per frame
+     */
     void updateChildren(sf::Time dt);
 
 private:

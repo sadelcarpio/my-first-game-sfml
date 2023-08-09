@@ -14,7 +14,7 @@ void SceneNode::attachChild(SceneNode::Ptr child) {
 SceneNode::Ptr SceneNode::detachChild(const SceneNode &node) {
     auto found = std::find_if(mChildren.begin(), mChildren.end(),
                               [&](Ptr &p) -> bool {
-                                  return p.get() == &node;
+                                  return p.get() == &node;  // C++ lambda function
                               }); // [&] means return the reference to the filter results
     // Ptr& p is the argument of the filter function
     assert(found != mChildren.end());
@@ -45,7 +45,7 @@ void SceneNode::drawChildren(sf::RenderTarget &target, sf::RenderStates states) 
 
 void SceneNode::update(sf::Time dt) {
     updateCurrent(dt);
-    updateChildren(dt);
+    updateChildren(  dt);
 }
 
 void SceneNode::updateCurrent(sf::Time dt) {
@@ -59,7 +59,7 @@ void SceneNode::updateChildren(sf::Time dt) {
 
 sf::Transform SceneNode::getWorldTransform() const {
     sf::Transform transform = sf::Transform::Identity;
-    for (const SceneNode* node = this; node != nullptr; node = node->mParent) {
+    for (const SceneNode *node = this; node != nullptr; node = node->mParent) {
         transform = node->getTransform() * transform;
     }
     return transform;

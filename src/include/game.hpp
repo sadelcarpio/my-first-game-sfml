@@ -47,7 +47,5 @@ private:
 private:
     sf::RenderWindow mWindow;
     World mWorld;
-    bool mIsMovingUp = false, mIsMovingDown = false, mIsMovingRight = false, mIsMovingLeft = false;
-    const float PlayerSpeed = 150.f;  // pixels / second
     static const sf::Time TimePerFrame;
 };

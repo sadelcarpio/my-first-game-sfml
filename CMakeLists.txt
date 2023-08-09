@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.22)
 project(my_first_game_sfml)
 
 set(CMAKE_CXX_STANDARD 17)

@@ -3,16 +3,28 @@
 
 #include "scene_node.hpp"
 
-class SpriteNode: public SceneNode {
+/**
+ * Child of SceneNode, represents an element that has a fixed Sprite that doesn't move (could be a background image)
+ */
+class SpriteNode : public SceneNode {
 public:
-    explicit SpriteNode(const sf::Texture& texture);
+    /**
+     * Construct SpriteNode with a texture
+     * @param texture
+     */
+    explicit SpriteNode(const sf::Texture &texture);
 
-    SpriteNode(const sf::Texture& texture,
-               const sf::IntRect& textureRect);
+    /**
+     * Construct SpriteNode with texture and textureRect which is the space the texture is going to fill.
+     * @param texture
+     * @param textureRect
+     */
+    SpriteNode(const sf::Texture &texture,
+               const sf::IntRect &textureRect);
 
 private:
-    void drawCurrent(sf::RenderTarget& target,
-                             sf::RenderStates states) const override;
+    void drawCurrent(sf::RenderTarget &target,
+                     sf::RenderStates states) const override;
 
 private:
     sf::Sprite mSprite;

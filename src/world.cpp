@@ -55,7 +55,7 @@ void World::buildScene() {
 
     // Add player's aircraft
     std::unique_ptr<Aircraft> leader(new Aircraft(Aircraft::Eagle, mTextures));
-    mPlayerAircraft = leader.get();
+    mPlayerAircraft = leader.get();  // passes the unique_ptr to the pointer mPlayerAircraft
     mPlayerAircraft->setPosition(mSpawnPosition);
     mPlayerAircraft->setVelocity(40.f, mScrollSpeed);
     mSceneLayers[Air]->attachChild(std::move(leader));
